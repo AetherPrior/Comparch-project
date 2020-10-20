@@ -1,0 +1,12 @@
+start:
+ipa
+jmpn end
+add sum
+store sum
+jmp start
+end:
+load sum
+opa
+stop
+sum: .data 1 0
+count: .data 1 50
