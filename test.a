@@ -1,25 +1,29 @@
 start:
 ipa
-jmpz end
+jmpz checkEmpty
 jmpn start
-shu
-li data
-add count
-stor
-load count
+shu  ;shift integer to upper half of register
+li data  ;load data to lower half of register
+add count  ;add offset
+stor  ;stores integer in upper half of acc at address stored in lower half
+load count ;increments the count
 add inc
 store count
 jmp start
-end:
-li data
+checkEmpty:
+load count
+jmpz end
+print:
+li data  ;load address of first integer
 add printed
-la
-opa
-load printed
+la  ;load from address in lower half
+opa ;print
+load printed  
 add inc
 store printed
 sub count
-jmpnz end
+jmpnz print
+end:
 stop
 inc: .data 1 1
 count: .data 1 0
