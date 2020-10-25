@@ -1,12 +1,27 @@
 start:
 ipa
-jmpn end
-add sum
-store sum
+jmpz end
+jmpn start
+shu
+li data
+add count
+stor
+load count
+add inc
+store count
 jmp start
 end:
-load sum
+li data
+add printed
+la
 opa
+load printed
+add inc
+store printed
+sub count
+jmpnz end
 stop
-sum: .data 1 0
-count: .data 1 50
+inc: .data 1 1
+count: .data 1 0
+printed: .data 1 0
+data: .data 1 0
