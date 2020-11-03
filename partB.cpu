@@ -107,21 +107,21 @@
 	<PunctChar char=";" use="comment" />
 
 	<!--......... machine instruction fields ............-->
-	<Field name="unused5" type="ignored" numBits="5" relativity="absolute" signed="true" defaultValue="0" id="model.Field12d5501">
+	<Field name="unused5" type="ignored" numBits="5" relativity="absolute" signed="true" defaultValue="0" id="model.Field1d26d1c">
 	</Field>
-	<Field name="reg" type="required" numBits="3" relativity="absolute" signed="false" defaultValue="0" id="model.Field7eeb78">
+	<Field name="reg" type="required" numBits="3" relativity="absolute" signed="false" defaultValue="0" id="model.Field162658d">
 	</Field>
-	<Field name="unused11" type="ignored" numBits="11" relativity="absolute" signed="true" defaultValue="0" id="model.Field16e89d6">
+	<Field name="unused11" type="ignored" numBits="11" relativity="absolute" signed="true" defaultValue="0" id="model.Field112eb84">
 	</Field>
-	<Field name="integer" type="required" numBits="8" relativity="absolute" signed="false" defaultValue="0" id="model.Field524e37">
+	<Field name="integer" type="required" numBits="8" relativity="absolute" signed="false" defaultValue="0" id="model.Field16e24fc">
 	</Field>
-	<Field name="unused8" type="ignored" numBits="8" relativity="absolute" signed="true" defaultValue="0" id="model.Field1a686e1">
+	<Field name="unused8" type="ignored" numBits="8" relativity="absolute" signed="true" defaultValue="0" id="model.Field1761040">
 	</Field>
-	<Field name="unused3" type="ignored" numBits="3" relativity="absolute" signed="true" defaultValue="2" id="model.Field849606">
+	<Field name="unused3" type="ignored" numBits="3" relativity="absolute" signed="true" defaultValue="2" id="model.Field1d244ae">
 	</Field>
-	<Field name="op" type="required" numBits="5" relativity="absolute" signed="false" defaultValue="0" id="model.Field1a791b9">
+	<Field name="op" type="required" numBits="5" relativity="absolute" signed="false" defaultValue="0" id="model.Field144cbdb">
 	</Field>
-	<Field name="addr" type="required" numBits="8" relativity="absolute" signed="false" defaultValue="0" id="model.Field1925a4c">
+	<Field name="addr" type="required" numBits="8" relativity="absolute" signed="false" defaultValue="0" id="model.Field16557cb">
 	</Field>
 
 	<!--............. FileChannels .................-->
@@ -370,22 +370,6 @@
 		<Microinstruction microRef="model.microinstruction.End173c5df" />
 	</MachineInstruction>
 
-	<MachineInstruction name="indirect_load" opcode="11" instructionFormat="op unused3 addr" assemblyFormat="op addr" instructionColors="#ea85c2 #d1a99f #8f96a5" assemblyColors="#ea85c2 #8f96a5" >
-		<Microinstruction microRef="model.microinstruction.TransferRtoR2b99a1" />
-		<Microinstruction microRef="model.microinstruction.MemoryAccess17b2235" />
-		<Microinstruction microRef="model.microinstruction.MemoryAccess156e8fa" />
-		<Microinstruction microRef="model.microinstruction.TransferRtoR167964b" />
-		<Microinstruction microRef="model.microinstruction.End173c5df" />
-	</MachineInstruction>
-
-	<MachineInstruction name="indirect_store" opcode="10" instructionFormat="op unused3 addr" assemblyFormat="op addr" instructionColors="#b8bb96 #dff4b0 #bb84b7" assemblyColors="#b8bb96 #bb84b7" >
-		<Microinstruction microRef="model.microinstruction.TransferRtoR2b99a1" />
-		<Microinstruction microRef="model.microinstruction.TransferRtoR1ece21f" />
-		<Microinstruction microRef="model.microinstruction.MemoryAccess17b2235" />
-		<Microinstruction microRef="model.microinstruction.MemoryAccess155da2e" />
-		<Microinstruction microRef="model.microinstruction.End173c5df" />
-	</MachineInstruction>
-
 	<MachineInstruction name="la" opcode="f" instructionFormat="op unused11" assemblyFormat="op" instructionColors="#eadcfe #b495a3" assemblyColors="#eadcfe" >
 		<Microinstruction microRef="model.microinstruction.TransferRtoR1146082" />
 		<Microinstruction microRef="model.microinstruction.TransferRtoR1fbf617" />
@@ -395,23 +379,8 @@
 		<Microinstruction microRef="model.microinstruction.End173c5df" />
 	</MachineInstruction>
 
-	<MachineInstruction name="stor" opcode="e" instructionFormat="op unused11" assemblyFormat="op" instructionColors="#f8edf6 #bdccdb" assemblyColors="#f8edf6" >
-		<Microinstruction microRef="model.microinstruction.TransferRtoR1146082" />
-		<Microinstruction microRef="model.microinstruction.TransferRtoR1fbf617" />
-		<Microinstruction microRef="model.microinstruction.TransferRtoR2b99a1" />
-		<Microinstruction microRef="model.microinstruction.Shiftc720fe" />
-		<Microinstruction microRef="model.microinstruction.TransferRtoR1ece21f" />
-		<Microinstruction microRef="model.microinstruction.MemoryAccess155da2e" />
-		<Microinstruction microRef="model.microinstruction.End173c5df" />
-	</MachineInstruction>
-
 	<MachineInstruction name="li" opcode="d" instructionFormat="op unused3 addr" assemblyFormat="op addr" instructionColors="#99c194 #c694cb #ee859e" assemblyColors="#99c194 #ee859e" >
 		<Microinstruction microRef="model.microinstruction.TransferRtoRfadfb3" />
-		<Microinstruction microRef="model.microinstruction.End173c5df" />
-	</MachineInstruction>
-
-	<MachineInstruction name="shl" opcode="c" instructionFormat="op unused11" assemblyFormat="op" instructionColors="#9fb0d2 #becade" assemblyColors="#9fb0d2" >
-		<Microinstruction microRef="model.microinstruction.Shift170112f" />
 		<Microinstruction microRef="model.microinstruction.End173c5df" />
 	</MachineInstruction>
 
