@@ -1,0 +1,66 @@
+    ; m2m is treated as indirect store
+    ; SYNTAX:
+    ; m2m LOCATION
+    ; Description:
+    ; Transfers content from an address pointed to by location 0x02...
+    ; to the address pointed to by LOCATION
+    ; Registers Clobbered: 
+    ; ACC
+     
+     
+    ; 0x80 -  program start (128 words of program memory, 128 words of data) 
+    ;--------------------user defined EQUs-------------------------------;
+    origPtr EQU 0x08
+    arrStart EQU 0x11
+    tmpPtr EQU 0x02
+    dummyVar EQU 0xFF
+    one: .data 1 0x01
+    main:
+        li arrStart ; start of array
+        sta PTR_LOC; store it in 0x10
+        sta origPtr; stores the start address permanently
+        ;ipa   ;get Size
+        ;sta  COUNTER_LOC;0x09 isa pointer to number
+        ;sta origCount ;0x07 has original counter
+        loop:
+            ipa ;take input
+            bz end ;check if zero
+            bneg lend ;negative? fuckoff...
+     
+            lara 0x01
+            addra 0x00 0x01
+            lraa 0x00
+            sta 0x03
+            li 0x03
+            sta tmpPtr ;for indirect storing
+            m2m PTR_LOC ;indirect store to PTR_LOC from 0x02
+            lda PTR_LOC ;load ptr loc
+            add one ;add 1
+            sta PTR_LOC; increment pointer loc
+    lend:
+            jmp loop ; loopback
+    end:
+        li 0x01
+        lara 0x03
+        loop2:
+        lda PTR_LOC ;loading Top of steck again
+        sub one ; decrement it
+        sta PTR_LOC ;Store it beck
+     
+        lda PTR_LOC ;load the top of the steck
+        sub origPtr ;subtract bottom from it
+        add one
+        bneg halt ;PTR= ORIGPTR? we're done!
+        
+        li arrStart
+        lara 0x04
+        addra 0x04 0x02
+        lraa 0x04
+        sta dummyVar
+        m2a dummyVar ; indirect_load ptr_loc
+        opa
+        addra 0x02 0x03
+        jmp end
+    halt:
+        hlt
+     
