@@ -24,7 +24,7 @@ main:
     loop:
         ipa ;take input
         bz end ;check if zero
-        bneg lend ;negative? fuckoff...
+        bneg lend ;negative? skip
 
         sta 0x03
         li 0x03

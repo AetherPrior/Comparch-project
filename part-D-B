@@ -5,7 +5,7 @@
     ; Transfers content from an address pointed to by location 0x02...
     ; to the address pointed to by LOCATION
     ; Registers Clobbered: 
-    ; ACC
+    ; ACC D1 D2
      
      
     ; 0x80 -  program start (128 words of program memory, 128 words of data) 
@@ -20,12 +20,12 @@
         sta PTR_LOC; store it in 0x10
         sta origPtr; stores the start address permanently
         ;ipa   ;get Size
-        ;sta  COUNTER_LOC;0x09 isa pointer to number
+        ;sta  COUNTER_LOC;0x09 is a pointer to number
         ;sta origCount ;0x07 has original counter
         loop:
             ipa ;take input
             bz end ;check if zero
-            bneg lend ;negative? fuckoff...
+            bneg lend ;negative? skip
      
             lara 0x01
             addra 0x00 0x01
