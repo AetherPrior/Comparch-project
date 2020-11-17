@@ -30,8 +30,8 @@ main:
     ;sta origCount ;0x07 has original counter
     loop:
         ipa ;take input
-        bz end ;check if zero
-        bneg lend ;negative? skip
+        jmpz end ;check if zero
+        jmpn lend ;negative? skip
 
         sta 0x03
         li 0x03
@@ -49,10 +49,10 @@ end:
 
     lda PTR_LOC ;load the top of the steck
     sub origPtr ;subtract bottom from it
-    bneg halt ;PTR= ORIGPTR? we're done!
+    jmpn halt ;PTR= ORIGPTR? we're done!
     m2a PTR_LOC ; indirect_load ptr_loc
     opa 
     jmp end
 halt:
-    hlt
+    stop
 

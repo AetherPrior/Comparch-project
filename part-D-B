@@ -31,12 +31,9 @@
         ;sta origCount ;0x07 has original counter
         loop:
             ipa ;take input
-            bz end ;check if zero
-            bneg lend ;negative? skip
+            jmpz end ;check if zero
+            jmpn lend ;negative? skip
      
-            lara 0x01
-            addra 0x00 0x01
-            lraa 0x00
             sta 0x03
             li 0x03
             sta tmpPtr ;for indirect storing
@@ -49,6 +46,8 @@
     end:
         li 0x01
         lara 0x03
+        li 0x00
+        lara 0x00
         loop2:
         lda PTR_LOC ;loading Top of steck again
         sub one ; decrement it
@@ -57,7 +56,7 @@
         lda PTR_LOC ;load the top of the steck
         sub origPtr ;subtract bottom from it
         add one
-        bneg halt ;PTR= ORIGPTR? we're done!
+        jmpn halt ;PTR= ORIGPTR? we're done!
         
         li arrStart
         lara 0x04
@@ -65,9 +64,12 @@
         lraa 0x04
         sta dummyVar
         m2a dummyVar ; indirect_load ptr_loc
+        lara 0x01
+        addra 0x00 0x01
+        lraa 0x00
         opa
         addra 0x02 0x03
-        jmp end
+        jmp loop2
     halt:
-        hlt
+        stop
      
